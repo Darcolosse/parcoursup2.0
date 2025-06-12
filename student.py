@@ -1,14 +1,15 @@
+from typing import List
 class Student:
-    _id = 0
+    _id: int = 0
 
-    def __init__(self, name: str, last_name: str, school_preferences: list):
-        self.id = Student._id
+    def __init__(self, name: str, last_name: str, school_preferences: List[int]):
+        self.id: int = Student._id
         Student._id += 1
-        self.last_name = last_name
-        self.name = name
-        self.school_preferences = school_preferences
-        self._index = 0
-        self.preference = ""
+        self.last_name: str = last_name
+        self.name: str = name
+        self.school_preferences: List[int] = school_preferences
+        self._index: int = 0
+        self.preference: "School" = None
         self.elu = False
 
     def remove_preferences(self, school_id: int):

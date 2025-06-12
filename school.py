@@ -1,14 +1,17 @@
+from typing import List
+
+
 class School:
     _id = 0
 
-    def __init__(self, name:str, capacity:int, student_preferences: list, preference:dict):
-        self.id = School._id
+    def __init__(self, name: str, capacity: int, student_preferences: List[int], preference: dict[int, "Student"]):
+        self.id: int = School._id
         School._id += 1
-        self.name = name
-        self.capacity = capacity
-        self.student_preferences = student_preferences
-        self._index = 0
-        self.preference = preference
+        self.name: str = name
+        self.capacity: int = capacity
+        self.student_preferences: List[int] = student_preferences
+        self._index: int = 0
+        self.preference: dict[int, "Student"] = preference
 
     def __str__(self):
         return f"id: {self.id}, name: {self.name}, capacity : {self.capacity}"
