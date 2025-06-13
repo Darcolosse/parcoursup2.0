@@ -14,6 +14,14 @@ class Student:
 
     def remove_preferences(self, school_id: int):
         self.school_preferences.remove(school_id)
+    
+    def set_preference(self, new_pref):
+        self.school_preferences = new_pref
+    
+    def str_compact(self):
+        return f"{self.id} {self.name}"
+
+    
 
     def __str__(self):
         return f"id: {self.id}, name: {self.last_name}, first name: {self.name}"

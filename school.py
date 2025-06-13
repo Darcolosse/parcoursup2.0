@@ -12,6 +12,13 @@ class School:
         self.student_preferences: List[int] = student_preferences
         self._index: int = 0
         self.preference: dict[int, "Student"] = preference
+    
+    def set_preference(self, new_pref):
+        self.student_preferences = new_pref
+        self.preference = {key: None for key in self.student_preferences}
+    
+    def str_compact(self):
+        return self.name
 
     def __str__(self):
         return f"id: {self.id}, name: {self.name}, capacity : {self.capacity}"

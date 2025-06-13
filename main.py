@@ -1,15 +1,21 @@
 from stable_marriage import StableMarriage
+from importer import Importer
+from student import Student
+from school import School
 
 
 if __name__ == "__main__":
-    print("Starting selection process for students...".center(100, "-"))
-    marriage = StableMarriage("students.json")
-    res = marriage.selection_student()
-    marriage.print_list(*res)
-    print("Finished processing students and schools.".center(100, "-"))
-    print()
-    print()
-    print()
+    # print("Starting selection process for students...".center(100, "-"))
+    # school, student = Importer.importer("students.json")
+    importer = Importer()
+    school, student = importer.charger_fichier()
+    marriage = StableMarriage(student, school)
+    # res = marriage.selection_student()
+    # marriage.print_list(*res)
+    # print("Finished processing students and schools.".center(100, "-"))
+    # print()
+    # print()
+    # print()
     
     print("Starting selection process for schools...".center(100, "-"))
     res2 = marriage.selection_school()

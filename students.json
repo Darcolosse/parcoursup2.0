@@ -1255,7 +1255,7 @@
     },
     {
       "name": "ESPCI",
-      "capacity": 4,
+      "capacity": 50,
       "student_preferences": [
         83,
         88,

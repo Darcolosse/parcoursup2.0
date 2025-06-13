@@ -9,13 +9,9 @@ class StableMarriage:
     school_list = []
     student_list = []
 
-    def __init__(self, file: str):
-        with open(file, "r", encoding='utf-8') as f:
-            data = json.load(f)
-
-        self.school_list = [School(school['name'], school['capacity'], school["student_preferences"], {key: None for key in school["student_preferences"]}) for school in data['schools']]
-
-        self.student_list = [Student(student['first_name'], student['last_name'], student["school_preferences"]) for student in data['students']]
+    def __init__(self, student_list, school_list):
+        self.school_list = school_list
+        self.student_list = student_list
 
     def selection_student(self) -> Tuple[List[School], List[School]]:
         iteration = 0
@@ -34,27 +30,32 @@ class StableMarriage:
                 school = school_list[student.school_preferences.pop(0)]
 
                 # Vérifier si l'école a de la
-                if self.occupied_capacity(school.preference) < school.capacity and student.id in school.student_preferences:
-                    # Ajouter l'étudiant à l'école
-                    school.preference[student.id] = student
-                    reject = False
+                if student.id in school.student_preferences:
+                    capacity = (len(school.preference) - list(school.preference.values()).count(None)) < school.capacity
+                    if capacity:
+                        # Ajouter l'étudiant à l'école
+                        school.preference[student.id] = student
+                        reject = False
 
-                else:
-                    for key, current_student in school.preference.items():
-                        if student.id in school.student_preferences:
-                            if current_student is not None:
-                                # Comparer les préférences des étudiants
-                                if school.student_preferences.index(key) > school.student_preferences.index(student.id):
-                                    # Remplacer l'étudiant actuel par le nouvel étudiant
-                                    school.preference[key] = None
-                                    school.preference[student.id] = student
+                    else:
+                        for key, current_student in reversed(list(school.preference.items())):
+                                if current_student is not None:
+                                    # Comparer les préférences des étudiants
+                                    if school.student_preferences.index(key) > school.student_preferences.index(student.id):
+                                        # Remplacer l'étudiant actuel par le nouvel étudiant
+                                        school.preference[key] = None
+                                        school.preference[student.id] = student
 
-                                    student_free.append(current_student)
-                                    reject = False
-                                    break
+                                        student_free.append(current_student)
+                                        reject = False
+                                        break
                 if reject:
-                    student_with_no_school.append(student)
+                    # l'etudiant a été rejeté par l'ecole
+                    student_free.append(student)
+                    
+
             else:
+                # l'etudiant n'a plus de de pref
                 student_with_no_school.append(student)
 
         return (school_list, student_with_no_school, iteration)
