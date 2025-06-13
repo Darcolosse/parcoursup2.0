@@ -6,10 +6,10 @@ from student import Student
 
 
 class StableMarriage:
-    school_list = []
-    student_list = []
+    school_list: List[School] = []
+    student_list: List[Student] = []
 
-    def __init__(self, student_list, school_list):
+    def __init__(self, student_list: List[School], school_list: List[Student]) -> None:
         self.school_list = school_list
         self.student_list = student_list
 
@@ -32,7 +32,9 @@ class StableMarriage:
                 if student.id in school.student_preferences:
                     iteration += 1
                     capacity = (len(school.preference) - list(school.preference.values()).count(None)) < school.capacity
-                    if capacity:
+                    #if capacity:
+                    print(capacity, self.occupied_capacity(school.preference))
+                    if self.occupied_capacity(school.preference) < school.capacity:
                         # Ajouter l'étudiant à l'école
                         school.preference[student.id] = student
                         reject = False
@@ -61,7 +63,6 @@ class StableMarriage:
         return (school_list, student_with_no_school, iteration)
 
 
-    
     def selection_school(self) -> Tuple[List[School], List[School], int]:
         iteration = 0
         
@@ -80,7 +81,7 @@ class StableMarriage:
                     # Prend le premier étudiant de la liste de préférence de l'école
                     student = student_list[school.student_preferences.pop(0)]
                     # Invite l'étudiant à rejoindre l'école
-                    self.inviter(student, school, school_free)
+                    self.invite(student, school, school_free)
                 else:
                     # L'école n'a plus de préférences à traiter ou est pleine
                     break
@@ -89,12 +90,8 @@ class StableMarriage:
 
         return (school_list, student_with_no_school, iteration)
             
-                
-    def occupied_capacity(self, dico: dict[int, Student | School]) -> int:
-        # Retourne le nombre d'étudiants actuellement acceptés (non None) dans le dictionnaire de préférence
-        return len(dico) - list(dico.values()).count(None)
 
-    def inviter(self, student: Student, school: School, school_free: List[School]) -> None:
+    def invite(self, student: Student, school: School, school_free: List[School]) -> None:
         switch_school = False
         # Si l'étudiant ne veut pas de l'école, rejeter l'invitation
         if school.id in student.school_preferences:
@@ -103,8 +100,8 @@ class StableMarriage:
                 switch_school = True # l'étudiant accepte l'invitation
                 
             # Si l'étudiant préfère cette école à son affectation actuelle
-            elif (student.school_preferences.index(student.preference.id) > student.school_preferences.index(school.id)):
-                self.refuser(student, student.preference, school_free) # l'étudiant quitte son ancienne école
+            elif student.school_preferences.index(student.preference.id) > student.school_preferences.index(school.id):
+                self.refuse(student, student.preference, school_free) # l'étudiant quitte son ancienne école
                 switch_school = True
                 
             if switch_school:
@@ -112,17 +109,22 @@ class StableMarriage:
                 school.preference[student.id] = student
                 student.preference = school
             
-
-    def refuser(self, student, school, school_free):
+    @staticmethod
+    def refuse(student, school, school_free) -> None:
         # Retire l'étudiant de l'école
         school.preference[student.id] = None
         # Remet l'école dans la liste des écoles libres si besoin
         if school not in school_free:
             school_free.append(school) # Attention : elle y est peut-être déjà
 
+    @staticmethod
+    def occupied_capacity(dico: dict[int, Student | School]) -> int:
+        # Retourne le nombre d'étudiants actuellement acceptés (non None) dans le dictionnaire de préférence
+        return len(dico) - list(dico.values()).count(None)
 
-    
-    def print_preference_table_school(self):
+
+
+    def print_preference_table_school(self) -> None:
         col = " " * 15
         for elt in range(1, len(self.student_list)+1):
             col += f"{elt}".center(14, " ") + "|"
@@ -138,7 +140,7 @@ class StableMarriage:
             print("-"*(15*len(self.student_list)+15))
 
 
-    def print_preference_table_student(self):
+    def print_preference_table_student(self) -> None:
         col = " " * 15
         for elt in range(1, len(self.school_list)+1):
             col += f"{elt}".center(14, " ") + "|"
