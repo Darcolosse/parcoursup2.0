@@ -129,7 +129,7 @@
   "schools": [
     {
       "name": "Mines",
-      "capacity": 10,
+      "capacity": 3,
       "student_preferences": [0, 3, 5, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 1, 2, 4, 7, 9, 11, 13, 15, 17, 19, 21, 23]
     },
     {

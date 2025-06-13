@@ -23,7 +23,6 @@ class StableMarriage:
         student_with_no_school = []
 
         while student_free:
-            iteration += 1
             student = student_free.pop(0)
             reject = True
             if student.school_preferences:
@@ -31,6 +30,7 @@ class StableMarriage:
 
                 # Vérifier si l'école a de la
                 if student.id in school.student_preferences:
+                    iteration += 1
                     capacity = (len(school.preference) - list(school.preference.values()).count(None)) < school.capacity
                     if capacity:
                         # Ajouter l'étudiant à l'école
@@ -39,16 +39,16 @@ class StableMarriage:
 
                     else:
                         for key, current_student in reversed(list(school.preference.items())):
-                                if current_student is not None:
-                                    # Comparer les préférences des étudiants
-                                    if school.student_preferences.index(key) > school.student_preferences.index(student.id):
-                                        # Remplacer l'étudiant actuel par le nouvel étudiant
-                                        school.preference[key] = None
-                                        school.preference[student.id] = student
+                            if current_student is not None:
+                                # Comparer les préférences des étudiants
+                                if school.student_preferences.index(key) > school.student_preferences.index(student.id):
+                                    # Remplacer l'étudiant actuel par le nouvel étudiant
+                                    school.preference[key] = None
+                                    school.preference[student.id] = student
 
-                                        student_free.append(current_student)
-                                        reject = False
-                                        break
+                                    student_free.append(current_student)
+                                    reject = False
+                                    break
                 if reject:
                     # l'etudiant a été rejeté par l'ecole
                     student_free.append(student)
@@ -71,8 +71,8 @@ class StableMarriage:
         school_free: List[School] = self.school_list.copy()
 
         while school_free:
-            iteration += 1
             school = school_free.pop(0)
+            iteration += 1
 
             # Tant que l'école n'a pas atteint sa capacité maximale
             while self.occupied_capacity(school.preference) < school.capacity:
@@ -157,7 +157,7 @@ class StableMarriage:
     def print_list(self, accepted_list: List[School], unaccepted_list: List[School], iteration: int) -> None:
         for elt in accepted_list:
             accepted_students = [student.name for student in elt.preference.values() if student is not None]
-            print(f"{elt.name} a accepté les étudiants ({len(accepted_students)}) :", accepted_students,"\n")
+            print(f"{elt.name} a accepté les étudiants ({len(accepted_students)}/{elt.capacity}) :", accepted_students,"\n")
 
         # Afficher les étudiants non affectés
         print(f"Étudiants non affectés ({len(unaccepted_list)}) :", [elt.name for elt in unaccepted_list],"\n")

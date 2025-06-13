@@ -4,7 +4,7 @@ from typing import List
 class School:
     _id = 0
 
-    def __init__(self, name: str, capacity: int, student_preferences: List[int], preference: dict[int, "Student"]):
+    def __init__(self, name: str, capacity: int, student_preferences: List[int], preference: dict[int, "Student"]) -> None:
         self.id: int = School._id
         School._id += 1
         self.name: str = name
@@ -18,7 +18,7 @@ class School:
         self.preference = {key: None for key in self.student_preferences}
     
     def str_compact(self):
-        return self.name
+        return f"{self.name}  ({len(self.preference)}/{self.capacity})"
 
     def __str__(self):
         return f"id: {self.id}, name: {self.name}, capacity : {self.capacity}"

@@ -283,7 +283,7 @@ class Window:
             # Récupère les étudiants, filtre les None, trie par id, puis transforme avec str_compact
             students = [student for student in school.preference.values() if student is not None]
             sorted_students = sorted(students, key=lambda s: s.id)
-            result[school.name] = [student.str_compact() for student in sorted_students]
+            result[f"{school.name}  ({len(sorted_students)}/{school.capacity})" ] = [student.str_compact() for student in sorted_students]
 
         # Pour les étudiants sans école, idem
         sorted_students = sorted(student_list, key=lambda s: s.id)
@@ -377,7 +377,6 @@ class Window:
         importer = Importer(self.root)
         schools, students = importer.charger_fichier()
         for student in students:
-            print(student.preference)
             self.student_list.append(student)
         for school in schools:
             self.school_list.append(school)
