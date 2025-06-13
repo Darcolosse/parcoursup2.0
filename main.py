@@ -8,10 +8,10 @@ if __name__ == "__main__":
     school, student = importer.charger_fichier()
 
     """ STUDENT SELECTION """
-    """marriage = StableMarriage(student, school)
+    marriage = StableMarriage(student, school)
     res = marriage.selection_student()
     marriage.print_list(*res)
-    print("Finished processing students and schools.".center(100, "-"))"""
+    print("Finished processing students and schools.".center(100, "-"))
 
     """ SCHOOL SELECTION """
     print("Starting selection process for schools...".center(100, "-"))

@@ -13,59 +13,63 @@ class StableMarriage:
         self.school_list = school_list
         self.student_list = student_list
 
-    def selection_student(self) -> Tuple[List[School], List[School]]:
+    from typing import Tuple, List
+
+    def selection_student(self) -> Tuple[List['School'], List['Student'], int]:
         iteration = 0
-        # Liste des écoles
-        school_list =  self.school_list.copy()
-        
-        # Liste des étudiants
+        # Création de copies
+        school_list = self.school_list.copy()
         student_free = self.student_list.copy()
+
+        # Liste pour stocker les étudiants qui n'ont pas pu être placés dans une école
         student_with_no_school = []
 
         while student_free:
+            # Prendre le premier étudiant de la liste des étudiants non affectés
             student = student_free.pop(0)
             reject = True
+
+            # Vérifier si l'étudiant a encore des préférences d'écoles
             if student.school_preferences:
+                # Récupérer la prochaine école préférée de l'étudiant
                 school = school_list[student.school_preferences.pop(0)]
 
-                # Vérifier si l'école a de la
+                # Vérifier si l'école a une préférence pour cet étudiant
                 if student.id in school.student_preferences:
                     iteration += 1
+                    # Vérifier si l'école a encore de la capacité disponible
                     capacity = (len(school.preference) - list(school.preference.values()).count(None)) < school.capacity
-                    #if capacity:
-                    print(capacity, self.occupied_capacity(school.preference))
-                    if self.occupied_capacity(school.preference) < school.capacity:
+                    if capacity:
+                    #if self.occupied_capacity(school.preference) < school.capacity:
                         # Ajouter l'étudiant à l'école
                         school.preference[student.id] = student
                         reject = False
-
                     else:
+                        # Parcourir les étudiants déjà acceptés par l'école
                         for key, current_student in reversed(list(school.preference.items())):
                             if current_student is not None:
-                                # Comparer les préférences des étudiants
+                                # Comparer les préférences des étudiants pour cette école
                                 if school.student_preferences.index(key) > school.student_preferences.index(student.id):
-                                    # Remplacer l'étudiant actuel par le nouvel étudiant
+                                    # Remplacer l'étudiant actuel par le nouvel étudiant si ce dernier est préféré
                                     school.preference[key] = None
                                     school.preference[student.id] = student
-
                                     student_free.append(current_student)
                                     reject = False
                                     break
                 if reject:
-                    # l'etudiant a été rejeté par l'ecole
+                    # Si l'étudiant a été rejeté par l'école, le remettre dans la liste des étudiants non affectés
                     student_free.append(student)
-                    
-
             else:
-                # l'etudiant n'a plus de de pref
+                # Si l'étudiant n'a plus de préférences d'écoles, l'ajouter à la liste des étudiants sans école
                 student_with_no_school.append(student)
 
+        # Retourner les listes des écoles, des étudiants sans école et le nombre d'itérations effectuées
         return (school_list, student_with_no_school, iteration)
 
 
     def selection_school(self) -> Tuple[List[School], List[School], int]:
         iteration = 0
-        
+
         student_list = self.student_list.copy()
         school_list = self.school_list.copy()
         # Copie de la liste des écoles à traiter
@@ -89,7 +93,7 @@ class StableMarriage:
         student_with_no_school = [student for student in self.student_list if student.preference is None]
 
         return (school_list, student_with_no_school, iteration)
-            
+
 
     def invite(self, student: Student, school: School, school_free: List[School]) -> None:
         switch_school = False
@@ -98,17 +102,17 @@ class StableMarriage:
             # Si l'étudiant n'a pas encore d'école
             if (student.preference == None):
                 switch_school = True # l'étudiant accepte l'invitation
-                
+
             # Si l'étudiant préfère cette école à son affectation actuelle
             elif student.school_preferences.index(student.preference.id) > student.school_preferences.index(school.id):
                 self.refuse(student, student.preference, school_free) # l'étudiant quitte son ancienne école
                 switch_school = True
-                
+
             if switch_school:
                 # Affecte l'étudiant à la nouvelle école
                 school.preference[student.id] = student
                 student.preference = school
-            
+
     @staticmethod
     def refuse(student, school, school_free) -> None:
         # Retire l'étudiant de l'école
