@@ -3,69 +3,64 @@
     {
       "first_name": "Alexis",
       "last_name": "Agra",
-      "school_preferences": [0, 1, 2]
+      "school_preferences": [0, 1]
     },
     {
       "first_name": "Darco",
       "last_name": "Boudri",
-      "school_preferences": [2, 1, 0]
+      "school_preferences": [1, 0]
     },
     {
       "first_name": "Antoine",
       "last_name": "REAc",
-      "school_preferences": [0, 1, 2]
+      "school_preferences": [0, 1]
     },
     {
       "first_name": "Arthur",
       "last_name": "Dupont",
-      "school_preferences": [1, 0, 2]
+      "school_preferences": [1, 0]
     },
     {
       "first_name": "Hugo",
       "last_name": "Martin",
-      "school_preferences": [2, 0, 1]
+      "school_preferences": [0, 1]
     },
     {
       "first_name": "Camille",
       "last_name": "Bernard",
-      "school_preferences": [1, 0, 2]
+      "school_preferences": [1, 0]
     },
     {
       "first_name": "Lucas",
       "last_name": "Petit",
-      "school_preferences": [0, 1, 2]
+      "school_preferences": [0, 1]
     },
     {
       "first_name": "Manon",
       "last_name": "Durand",
-      "school_preferences": [1, 0, 2]
+      "school_preferences": [1, 0]
     },
     {
       "first_name": "James",
       "last_name": "Brown",
-      "school_preferences": [2, 1, 0]
+      "school_preferences": [0, 1]
     },
     {
       "first_name": "Liam",
       "last_name": "Davis",
-      "school_preferences": [1, 0, 2]
+      "school_preferences": [1, 0]
     }
   ],
   "schools": [
     {
       "name": "Mines",
-      "capacity": 2,
+      "capacity": 7,
       "student_preferences": [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
     },
     {
       "name": "N7",
       "capacity": 3,
       "student_preferences": [9, 7, 5, 3, 1, 8, 6, 4, 2, 0]
-    },
-    {
-      "name": "IUT",
-      "capacity": 20,
-      "student_preferences": [9, 8, 6, 4, 7, 5, 3, 1, 2, 0]
     }
   ]
 }

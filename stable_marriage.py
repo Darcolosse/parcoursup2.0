@@ -19,22 +19,21 @@ class StableMarriage:
 
     def selection_student(self) -> Tuple[List[School], List[School]]:
         iteration = 0
-        # Liste des écoles
-        school_list =  self.school_list.copy()
-        
-        # Liste des étudiants
+        # Liste des étudiants libres
         student_free = self.student_list.copy()
         student_with_no_school = []
 
         while student_free:
+            print(iteration)
             iteration += 1
             student = student_free.pop(0)
-            reject = True
+            reject = True;
             if student.school_preferences:
-                school = school_list[student.school_preferences.pop(0)]
+                school = self.school_list[student.school_preferences.pop(0)]
 
                 # Vérifier si l'école a de la
-                if self.occupied_capacity(school.preference) < school.capacity and student.id in school.student_preferences:
+                capacity = (len(school.preference) - list(school.preference.values()).count(None)) < school.capacity
+                if capacity and student.id in school.student_preferences:
                     # Ajouter l'étudiant à l'école
                     school.preference[student.id] = student
                     reject = False
@@ -50,14 +49,14 @@ class StableMarriage:
                                     school.preference[student.id] = student
 
                                     student_free.append(current_student)
-                                    reject = False
+                                    reject = False;
                                     break
                 if reject:
                     student_with_no_school.append(student)
             else:
                 student_with_no_school.append(student)
 
-        return (school_list, student_with_no_school, iteration)
+        return (self.school_list, student_with_no_school, iteration)
 
 
     
@@ -84,7 +83,7 @@ class StableMarriage:
                     # L'école n'a plus de préférences à traiter ou est pleine
                     break
 
-        student_with_no_school = [student for student in self.student_list if student.preference is None]
+        student_with_no_school += [student for student in self.student_list if student.preference is None]
 
         return (school_list, student_with_no_school, iteration)
             
