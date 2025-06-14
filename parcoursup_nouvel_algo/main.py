@@ -7,14 +7,14 @@ if __name__ == "__main__":
     # school, student = Importer.importer("students.json")
     importer = Importer()
     school, student = importer.charger_fichier()
-    ViewCmd.print_preference_table(school, student)
-    print("".center(80, "#"))
-    ViewCmd.print_preference_table(student, school)
+    ViewCmd.print_preference_table("ECOLES", school, student)
+    print()
+    ViewCmd.print_preference_table("ETUDIANTS", student, school)
 
     """ STUDENT SELECTION """
-    # marriage = StableMarriage(student, school)
-    # res = marriage.selection_school()
-    # ViewCmd.print_list(*res)
+    marriage = StableMarriage(student, school)
+    res = marriage.selection_school()
+    ViewCmd.print_list(*res)
 
     """ SCHOOL SELECTION """
     marriage = StableMarriage(school, student)

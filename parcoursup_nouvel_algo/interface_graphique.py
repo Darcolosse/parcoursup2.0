@@ -284,7 +284,7 @@ class Window:
         result = {}
         for school in school_liste:
             # Récupère les étudiants, filtre les None, trie par id, puis transforme avec str_compact
-            students = [student for student in school.preference.values() if student is not None]
+            students = [student for student in school.preferences.values() if student is not None]
             sorted_students = sorted(students, key=lambda s: s.id)
             result[f"{school.name}  ({len(sorted_students)}/{school.capacity})" ] = [student.str_compact() for student in sorted_students]
 

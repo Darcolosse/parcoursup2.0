@@ -28,7 +28,7 @@ class Entity:
         # Set the name, capacity, preferences and initialize wish
         self.name: str = name
         self.capacity: int = capacity
-        self.preference: dict[int, Entity] = {key: None for key in preferences}
+        self.preferences: dict[int, Entity] = {key: None for key in preferences}
         self.is_student: bool = is_student
         self.wish: List[Entity] = []
 
@@ -46,7 +46,7 @@ class Entity:
         """
         # Initialize the wish dictionary with preferences
         self.wish = []
-        for key in self.preference.keys():
+        for key in self.preferences.keys():
             if key in list(dict_object_wish.keys()):
                 self.wish.append(dict_object_wish[key])
                 
@@ -59,9 +59,12 @@ class Entity:
         
         for object in list_object_to_initialise:
             object.wish = []
-            for key in object.preference.keys():
+            for key in object.preferences.keys():
                 if key in list(dict_object_wish.keys()):
                     object.wish.append(dict_object_wish[key])
+
+    def compare(self, a: "Entity", b: "Entity") -> bool:
+        return self.wish.index(a) > self.wish.index(b)
     
     def get_preference(self) -> List[int]:
         """
@@ -71,7 +74,7 @@ class Entity:
         Returns:
             list[int]: A list of the IDs of the preferred entities.
         """
-        return list(self.preference.keys())
+        return list(self.preferences.keys())
     
     def is_full(self) -> bool:
         """
@@ -81,7 +84,7 @@ class Entity:
         Returns:
             bool: True if the entity is full, False otherwise.
         """
-        return (len(self.preference) - list(self.preference.values()).count(None)) >= self.capacity
+        return (len(self.preferences) - list(self.preferences.values()).count(None)) >= self.capacity
     
     def str_compact(self) -> str:
         """
@@ -91,7 +94,7 @@ class Entity:
         Returns:
             str: A string in the format "name (current_preferences/capacity)".
         """
-        return f"{self.name}  ({len(self.preference)}/{self.capacity})"
+        return f"{self.name}  ({len(self.preferences)}/{self.capacity})"
 
     def __str__(self) -> str:
         """
@@ -128,14 +131,19 @@ class Entity:
         Returns the next preference in the entity's list of preferences.
         If there are no more preferences, it raises StopIteration.
 
-        Raises:
-            StopIteration: If there are no more preferences.
-
         Returns:
             Entity: The next preference in the entity's list of preferences.
+
+        Raises:
+            StopIteration: If there are no more preferences.
         """
-        if self._index < len(self.student_preferences):
-            result = self.student_preferences[self._index]
+        if self._index < len(self.wish):
+            result = self.wish[self._index]
             self._index += 1
             return result
         raise StopIteration
+
+    def __eq__(self, other):
+        if isinstance(other, Entity):
+            return self.id == other.id and self.name == other.name and self.capacity == other.capacity
+        return False

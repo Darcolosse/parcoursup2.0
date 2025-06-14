@@ -8,13 +8,17 @@ class ViewCmd:
         print("Ne fait rien")
 
     @staticmethod
-    def print_preference_table(school_list: List[Entity], student_list: List[Entity]):
+    def print_preference_table(title: str, school_list: List[Entity], student_list: List[Entity]):
         
         # ANSI color codes
         CYAN = "\033[96m"
         YELLOW = "\033[93m"
         RESET = "\033[0m"
-        
+
+        print("".center(75, "#"))
+        print(f" TABLEAU DES PRÉFÉRENCES DES {title} ".center(75, "#"))
+        print("".center(75, "#"))
+
         col = " " * 14 +"#"
         for elt in range(1, len(student_list)+1):
             col += f"{YELLOW}{elt}{RESET}".center(14 + len(CYAN) + len(RESET), " ") + "|"
@@ -24,7 +28,7 @@ class ViewCmd:
 
         for elt in range(0, len(school_list)):
             row = f"{CYAN}{school_list[elt].name}{RESET}".center(14 + len(CYAN) + len(RESET), " ") + "#"
-            for preference_student in list(school_list[elt].preference.keys()):
+            for preference_student in list(school_list[elt].preferences.keys()):
                 row += f"{YELLOW}{student_list[preference_student].name}{RESET}".center(14 + len(CYAN) + len(RESET), " ") + "|"
             print(row)
             print("-"*(15*len(student_list)+15))
@@ -38,9 +42,11 @@ class ViewCmd:
         CYAN = "\033[96m"
         YELLOW = "\033[93m"
         RESET = "\033[0m"
+        print()
+        print("Résultat de la selection : \n")
 
         for elt in accepted_list:
-            accepted_students = [student.name for student in elt.preference.values() if student is not None]
+            accepted_students = [student.name for student in elt.preferences.values() if student is not None]
             print(f"{CYAN}{elt.name}{RESET} a accepté {GREEN}({len(accepted_students)}/{elt.capacity}){RESET} :", f"{YELLOW}{accepted_students}{RESET}")
 
         # Afficher les étudiants non affectés

@@ -22,7 +22,7 @@ def shuffle_json(data):
         return data
 
 # Charger les données JSON à partir d'un fichier
-input_file_path = 'students.json'
+input_file_path = 'json3.json'
 with open(input_file_path, 'r', encoding='utf-8') as file:
     data = json.load(file)
 
@@ -34,6 +34,6 @@ shuffled_json = json.dumps(shuffled_data, indent=2)
 print(shuffled_json)
 
 # Sauvegarder les données mélangées dans un nouveau fichier
-output_file_path = 'students2.json'
+output_file_path = 'json4.json'
 with open(output_file_path, 'w', encoding='utf-8') as file:
     json.dump(shuffled_data, file, indent=2)
