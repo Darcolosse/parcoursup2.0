@@ -1,0 +1,1298 @@
+{
+  "students": [
+    {
+      "first_name": "Alexis",
+      "last_name": "Agra",
+      "school_preferences": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Darco",
+      "last_name": "Boudri",
+      "school_preferences": [
+        1,
+        0,
+        3,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Antoine",
+      "last_name": "REAc",
+      "school_preferences": [
+        2,
+        1,
+        0,
+        4,
+        3
+      ]
+    },
+    {
+      "first_name": "Arthur",
+      "last_name": "Dupont",
+      "school_preferences": [
+        1,
+        3,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Hugo",
+      "last_name": "Martin",
+      "school_preferences": [
+        2,
+        4,
+        1,
+        0,
+        3
+      ]
+    },
+    {
+      "first_name": "Camille",
+      "last_name": "Bernard",
+      "school_preferences": [
+        0,
+        2,
+        4,
+        1,
+        3
+      ]
+    },
+    {
+      "first_name": "Lucas",
+      "last_name": "Petit",
+      "school_preferences": [
+        1,
+        2,
+        3,
+        0,
+        4
+      ]
+    },
+    {
+      "first_name": "Manon",
+      "last_name": "Durand",
+      "school_preferences": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "first_name": "James",
+      "last_name": "Brown",
+      "school_preferences": [
+        4,
+        3,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Davis",
+      "school_preferences": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Johnson",
+      "school_preferences": [
+        0,
+        2,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        4,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Hernandez",
+      "school_preferences": [
+        4,
+        0,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "James",
+      "last_name": "Smith",
+      "school_preferences": [
+        3,
+        0,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "first_name": "William",
+      "last_name": "Brown",
+      "school_preferences": [
+        1,
+        2,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Garcia",
+      "school_preferences": [
+        2,
+        1,
+        3,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Johnson",
+      "school_preferences": [
+        2,
+        1,
+        4,
+        0,
+        3
+      ]
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Martin",
+      "school_preferences": [
+        2,
+        1,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Amelia",
+      "last_name": "Thomas",
+      "school_preferences": [
+        3,
+        4,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Martinez",
+      "school_preferences": [
+        3,
+        0,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Martinez",
+      "school_preferences": [
+        3,
+        4,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Charlotte",
+      "last_name": "Thomas",
+      "school_preferences": [
+        3,
+        4,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Alexander",
+      "last_name": "Jackson",
+      "school_preferences": [
+        0,
+        3,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "James",
+      "last_name": "Jackson",
+      "school_preferences": [
+        4,
+        1,
+        2,
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Jackson",
+      "school_preferences": [
+        1,
+        0,
+        2,
+        4,
+        3
+      ]
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Gonzalez",
+      "school_preferences": [
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Hernandez",
+      "school_preferences": [
+        1,
+        4,
+        3,
+        0,
+        2
+      ]
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Gonzalez",
+      "school_preferences": [
+        1,
+        4,
+        3,
+        0,
+        2
+      ]
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Jones",
+      "school_preferences": [
+        3,
+        0,
+        4,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Taylor",
+      "school_preferences": [
+        3,
+        4,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Martinez",
+      "school_preferences": [
+        2,
+        0,
+        4,
+        1,
+        3
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Smith",
+      "school_preferences": [
+        2,
+        1,
+        0,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Davis",
+      "school_preferences": [
+        3,
+        4,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Harper",
+      "last_name": "Garcia",
+      "school_preferences": [
+        3,
+        4,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Davis",
+      "school_preferences": [
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Gonzalez",
+      "school_preferences": [
+        4
+      ]
+    },
+    {
+      "first_name": "Alexander",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        2,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "first_name": "Evelyn",
+      "last_name": "Wilson",
+      "school_preferences": [
+        3,
+        1,
+        2,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Miller",
+      "school_preferences": [
+        3,
+        1,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Alexander",
+      "last_name": "Williams",
+      "school_preferences": [
+        2,
+        3,
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Anderson",
+      "school_preferences": [
+        0,
+        3,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Jackson",
+      "school_preferences": [
+        3,
+        2,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Alexander",
+      "last_name": "Williams",
+      "school_preferences": [
+        2,
+        1,
+        0,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Jones",
+      "school_preferences": [
+        2,
+        1,
+        4,
+        0,
+        3
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Martinez",
+      "school_preferences": [
+        4,
+        3,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "first_name": "Lucas",
+      "last_name": "Jackson",
+      "school_preferences": [
+        4,
+        3,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Davis",
+      "school_preferences": [
+        0,
+        2,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Lopez",
+      "school_preferences": [
+        3,
+        4,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Thomas",
+      "school_preferences": [
+        1,
+        4,
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Lopez",
+      "school_preferences": [
+        4,
+        1,
+        2,
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Moore",
+      "school_preferences": [
+        0,
+        1,
+        3,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Gonzalez",
+      "school_preferences": [
+        2,
+        1,
+        3,
+        0,
+        4
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Charlotte",
+      "last_name": "Rodriguez",
+      "school_preferences": [
+        1,
+        3,
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Martin",
+      "school_preferences": [
+        3,
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        1,
+        3,
+        2,
+        4
+      ]
+    },
+    {
+      "first_name": "Benjamin",
+      "last_name": "Brown",
+      "school_preferences": [
+        4,
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Jackson",
+      "school_preferences": [
+        3,
+        2,
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "Amelia",
+      "last_name": "Williams",
+      "school_preferences": [
+        3,
+        2,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Alexander",
+      "last_name": "Davis",
+      "school_preferences": [
+        1,
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Jones",
+      "school_preferences": [
+        3,
+        2,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Davis",
+      "school_preferences": [
+        3,
+        2,
+        1,
+        0,
+        4
+      ]
+    },
+    {
+      "first_name": "William",
+      "last_name": "Martin",
+      "school_preferences": [
+        0,
+        4,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        2,
+        4,
+        1,
+        3
+      ]
+    },
+    {
+      "first_name": "Evelyn",
+      "last_name": "Jones",
+      "school_preferences": [
+        3,
+        1,
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "first_name": "Evelyn",
+      "last_name": "Gonzalez",
+      "school_preferences": [
+        2,
+        3,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Hernandez",
+      "school_preferences": [
+        1,
+        4,
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Martin",
+      "school_preferences": [
+        3,
+        4,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Jones",
+      "school_preferences": [
+        2
+      ]
+    },
+    {
+      "first_name": "Harper",
+      "last_name": "Wilson",
+      "school_preferences": [
+        1,
+        3,
+        0,
+        4,
+        2
+      ]
+    },
+    {
+      "first_name": "William",
+      "last_name": "Martinez",
+      "school_preferences": [
+        0,
+        3,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "first_name": "Harper",
+      "last_name": "Martin",
+      "school_preferences": [
+        3,
+        1,
+        2,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Amelia",
+      "last_name": "Brown",
+      "school_preferences": [
+        0,
+        4,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Williams",
+      "school_preferences": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Davis",
+      "school_preferences": [
+        3,
+        4,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Anderson",
+      "school_preferences": [
+        0,
+        4,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Williams",
+      "school_preferences": [
+        0,
+        4,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "first_name": "Lucas",
+      "last_name": "Miller",
+      "school_preferences": [
+        4,
+        0,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Davis",
+      "school_preferences": [
+        0,
+        4,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Brown",
+      "school_preferences": [
+        0,
+        3,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Martin",
+      "school_preferences": [
+        2,
+        1
+      ]
+    },
+    {
+      "first_name": "Charlotte",
+      "last_name": "Taylor",
+      "school_preferences": [
+        2,
+        3,
+        4,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Smith",
+      "school_preferences": [
+        3,
+        2,
+        0
+      ]
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Wilson",
+      "school_preferences": [
+        4,
+        1,
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Davis",
+      "school_preferences": [
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Davis",
+      "school_preferences": [
+        0,
+        4,
+        3
+      ]
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Lopez",
+      "school_preferences": [
+        0,
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Davis",
+      "school_preferences": [
+        3,
+        1,
+        0,
+        4,
+        2
+      ]
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Martin",
+      "school_preferences": [
+        4,
+        2,
+        1,
+        0,
+        3
+      ]
+    },
+    {
+      "first_name": "Charlotte",
+      "last_name": "Jackson",
+      "school_preferences": [
+        3,
+        4,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Matthew",
+      "last_name": "Miller",
+      "school_preferences": [
+        4,
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "first_name": "William",
+      "last_name": "Rodriguez",
+      "school_preferences": [
+        0,
+        4,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Williams",
+      "school_preferences": [
+        4,
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "first_name": "Mia",
+      "last_name": "Hernandez",
+      "school_preferences": [
+        4,
+        2,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Hernandez",
+      "school_preferences": [
+        2,
+        3,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Williams",
+      "school_preferences": [
+        4,
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "first_name": "Amelia",
+      "last_name": "Martin",
+      "school_preferences": [
+        3,
+        2,
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Martin",
+      "school_preferences": [
+        0,
+        2,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "first_name": "James",
+      "last_name": "Wilson",
+      "school_preferences": [
+        2,
+        4,
+        1,
+        3,
+        0
+      ]
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Smith",
+      "school_preferences": [
+        0,
+        3,
+        1,
+        4,
+        2
+      ]
+    }
+  ],
+  "schools": [
+    {
+      "name": "Mines",
+      "capacity": 10,
+      "student_preferences": [
+        5,
+        37,
+        28,
+        30,
+        20,
+        79,
+        54,
+        66,
+        15,
+        71,
+        13,
+        33,
+        17,
+        89,
+        67,
+        82,
+        96,
+        99,
+        18,
+        19,
+        94,
+        0,
+        46,
+        51,
+        56,
+        77,
+        52,
+        73,
+        98,
+        12,
+        35,
+        32,
+        70,
+        43,
+        39,
+        97,
+        72,
+        14,
+        22,
+        87,
+        74,
+        23,
+        45,
+        83,
+        29,
+        69,
+        8,
+        90,
+        68
+      ]
+    },
+    {
+      "name": "N7",
+      "capacity": 10,
+      "student_preferences": [
+        99,
+        34,
+        38,
+        78,
+        50,
+        5,
+        42,
+        26,
+        3,
+        21,
+        8,
+        77,
+        7,
+        6,
+        98,
+        4,
+        11,
+        80,
+        86,
+        53,
+        20,
+        14,
+        49,
+        13,
+        47,
+        61,
+        1,
+        32,
+        66,
+        2,
+        27,
+        74,
+        10,
+        54,
+        24,
+        88,
+        28,
+        23,
+        41,
+        29,
+        90
+      ]
+    },
+    {
+      "name": "Central",
+      "capacity": 5,
+      "student_preferences": [
+        54,
+        98,
+        33,
+        70,
+        90,
+        88,
+        19,
+        77,
+        15,
+        39,
+        59,
+        80,
+        0,
+        30,
+        29,
+        56,
+        78,
+        79,
+        18,
+        61,
+        60,
+        95
+      ]
+    },
+    {
+      "name": "Polytechnique",
+      "capacity": 15,
+      "student_preferences": [
+        95,
+        13,
+        81,
+        1,
+        67,
+        89,
+        3,
+        61,
+        62,
+
+        21,
+        96,
+        27,
+        11,
+        15,
+        49,
+        87,
+        90,
+        46,
+        14,
+        80,
+        10,
+        48,
+        65,
+        42,
+        44,
+        58,
+        86,
+        22,
+        77,
+        16,
+        18,
+        52,
+        84,
+        24,
+        99,
+        4,
+        57
+      ]
+    },
+    {
+      "name": "ESPCI",
+      "capacity": 50,
+      "student_preferences": [
+        83,
+        88,
+        16,
+        6,
+        59,
+        3,
+        13,
+        60,
+        68,
+        39,
+        90,
+        69,
+        18,
+        64,
+        8,
+        49,
+        9,
+        32,
+        66,
+        52,
+        71,
+        7,
+        1,
+        76,
+        28,
+        0,
+        43,
+        5,
+        79,
+        54,
+        19,
+        77,
+        58,
+        98,
+        95
+      ]
+    }
+  ]
+}
