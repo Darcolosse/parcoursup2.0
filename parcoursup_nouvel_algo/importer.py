@@ -14,7 +14,7 @@ class Importer:
                 Entity(
                     school['name'],
                     school['capacity'],
-                    school["student_preferences"],
+                    school["preferences"],
                     is_student=False
                 ) for school in data['schools']
             ]
@@ -22,7 +22,7 @@ class Importer:
                 Entity(
                     student['name'],
                     student['capacity'],
-                    student["school_preferences"],
+                    student["preferences"],
                     is_student=True
                 ) for student in data['students']
             ]
