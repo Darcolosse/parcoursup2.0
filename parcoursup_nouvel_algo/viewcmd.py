@@ -46,7 +46,7 @@ class ViewCmd:
         print("Résultat de la selection : \n")
 
         for elt in accepted_list:
-            accepted_students = [student.name for student in elt.preferences.values() if student is not None]
+            accepted_students = [f"{student.name}" for student in elt.preferences.values() if student is not None]
             print(f"{CYAN}{elt.name}{RESET} a accepté {GREEN}({len(accepted_students)}/{elt.capacity}){RESET} :", f"{YELLOW}{accepted_students}{RESET}")
 
         # Afficher les étudiants non affectés

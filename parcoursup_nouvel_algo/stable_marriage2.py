@@ -35,7 +35,7 @@ class StableMarriage:
             )
 
     @staticmethod
-    def stable_matching(courtier_list : List[Entity], courted_list : List[Entity]) -> Tuple[List[Entity], List[Entity], int]:
+    def stable_matching(courtier_list : List[Entity], courted_list : List[Entity]) -> Tuple[List[Entity], List[Entity], List[Entity], int]:
         iteration = 0
 
         courtier_list = copy.deepcopy(courtier_list)
@@ -55,51 +55,62 @@ class StableMarriage:
 
 
         while cur_courtier_free:
+            print("\n\n", cur_courtier_free)
             iteration += 1
             courtier = cur_courtier_free.pop(0)
             courted = courtier.wish.pop(0)
-
 
             StableMarriage.invite(courtier, courted, cur_courtier_free)
 
         courtier_with_no_courted = [courtier for courtier in courtier_list if courtier.preferences is None]
 
-        return (courted_list, courtier_with_no_courted, iteration)
+        return (courtier_list, courtier_with_no_courted, courted_list, iteration)
 
     @staticmethod
     def invite(courtier: Entity, courted: Entity, courtier_free: List[Entity]) -> None:
-        #print(f"invitation de {courtier.name} à {courted.name}")
+        print(f"invitation de {courtier.name} à {courted.name}")
+        print(f"Liste de voeux de {courtier.name} : {courtier.wish}")
+        print(f"Capacité actuel de {courtier.get_capacity()}/{courtier.capacity}")
 
         if courtier in courted.wish:
-            #print(f"    Mon courtisant {courtier.name} à {courtier.preferences}")
-            #print(f"    Mon courtisant {courtier.name} est accepté par {courted.name}")
+            print(f"    Mon courtisant {courtier.name} à {courtier.preferences}")
+            print(f"    Mon courtisant {courtier.name} est accepté par {courted.name}")
             if not courted.is_full():
-                #print("        VENEZ J'AI DE LA PLACE ".center(20, "#"))
+                print("        VENEZ J'AI DE LA PLACE ".center(20, "#"))
                 StableMarriage.accept(courtier, courted)
-                #print("        ", courtier.preferences)
+                print(f"        {courted.name} a accepté {courted.preferences[courtier.id].name}")
+                print(f"        {courtier.name} a accepté {courtier.preferences[courted.id].name}")
+
+                if not courtier.is_full():
+                    courtier_free.append(courtier)
 
             else:
+                print("        C'est l'heure de la bagarre")
                 for key_id, current_courtier in reversed(courted.preferences.items()):
                     if current_courtier is not None:
-                        #print(f"        {current_courtier.__repr__()} VS {courtier.__repr__()}")
+                        print(f"        {current_courtier.__repr__()} VS {courtier.__repr__()}")
                         if courted.compare(current_courtier, courtier):
                             StableMarriage.refuse(current_courtier, courted, courtier_free)
                             StableMarriage.accept(courtier, courted)
-                            #print(f"        {courtier.name} a été accepté par {courted.name}")
+                            print(f"        {courtier.name} a été accepté par {courted.name}")
 
                             break
-                        else:
+                        elif len(courtier.wish) > 0 and courtier not in courtier_free:
                             courtier_free.append(courtier)
+        else:
+            if len(courtier.wish) > 0:
+                courtier_free.append(courtier)
+            print(f"    le courtisant {courtier.name} n'est pas dans les voeux de {courted.name}")
 
     @staticmethod
     def refuse(courtier: Entity, courted: Entity, courtier_free: List[Entity]) -> None:
         courted.preferences[courtier.id] = None
-        courtier.preferences[courtier.id] = None
+        courtier.preferences[courted.id] = None
 
         if courtier not in courtier_free:
             courtier_free.append(courtier)
 
     @staticmethod
     def accept(courtier: Entity, courted: Entity) -> None:
-        courted.preferences[courted.id] = courtier
-        courtier.preferences[courtier.id] = courted
+        courted.preferences[courtier.id] = courtier
+        courtier.preferences[courted.id] = courted

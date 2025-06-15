@@ -1,0 +1,46 @@
+{
+  "students": [
+    {
+      "name": "Hugo",
+      "capacity": 1,
+      "school_preferences": [0, 2, 1]
+    },
+    {
+      "name": "Corentin",
+      "capacity": 1,
+      "school_preferences": [0, 2, 1]
+    },
+    {
+      "name": "Antoine",
+      "capacity": 1,
+      "school_preferences": [2, 0]
+    },
+    {
+      "name": "Alexis",
+      "capacity": 1,
+      "school_preferences": [2, 0]
+    },
+    {
+      "name": "Quentin",
+      "capacity": 1,
+      "school_preferences": [2, 1, 0]
+    }
+  ],
+  "schools": [
+    {
+      "name": "IUT",
+      "capacity": 1,
+      "student_preferences": [0, 1, 2, 3, 4]
+    },
+    {
+      "name": "Université",
+      "capacity": 2,
+      "student_preferences": [3, 2, 1]
+    },
+    {
+      "name": "ENSEEIHT",
+      "capacity": 1,
+      "student_preferences": [2, 1, 0]
+    }
+  ]
+}

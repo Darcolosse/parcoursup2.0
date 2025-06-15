@@ -65,7 +65,10 @@ class Entity:
 
     def compare(self, a: "Entity", b: "Entity") -> bool:
         return self.wish.index(a) > self.wish.index(b)
-    
+
+    def get_capacity(self) -> int:
+        return len(self.preferences) - list(self.preferences.values()).count(None)
+
     def get_preference(self) -> List[int]:
         """
         Returns the keys of the preference dictionary.
@@ -114,7 +117,7 @@ class Entity:
             str: A detailed string representation of the entity.
         """
         #return f"Entity(id={self.id}, name='{self.name}', capacity={self.capacity}, preferences={self.get_preference()}, is_student={self.is_student})"
-        return f"Entity({self.name})"
+        return f"Entity({self.name} : {self.id})"
 
     def __iter__(self) -> "Entity":
         """

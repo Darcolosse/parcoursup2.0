@@ -12,12 +12,15 @@ if __name__ == "__main__":
     ViewCmd.print_preference_table("ETUDIANTS", student, school)
 
     """ STUDENT SELECTION """
+    print("  STUDENT SELECTION  ")
     marriage = StableMarriage(student, school)
-    res = marriage.selection_school()
-    ViewCmd.print_list(*res)
+    res = marriage.selection_student()
+    ViewCmd.print_list(res[2], res[1], res[-1])
 
     """ SCHOOL SELECTION """
-    marriage = StableMarriage(school, student)
+    print("  SCHOOL SELECTION  ")
+    marriage = StableMarriage(student, school)
     res2 = marriage.selection_school()
-    ViewCmd.print_list(*res2)
+    ViewCmd.print_list(res2[0], res2[1], res2[-1])
+
 

@@ -1,0 +1,46 @@
+{
+  "students": [
+    {
+      "name": "student α",
+      "capacity": 1,
+      "school_preferences": [0,1,2,3]
+    },
+    {
+      "name": "student β",
+      "capacity": 1,
+      "school_preferences": [0,3,2,1]
+    },
+    {
+      "name": "student γ",
+      "capacity": 1,
+      "school_preferences": [1,0,2,3]
+    },
+    {
+      "name": "student δ",
+      "capacity": 1,
+      "school_preferences": [3,1,2,0]
+    }
+  ],
+  "schools": [
+    {
+      "name": "School A",
+      "capacity": 1,
+      "student_preferences": [3,2,0,1]
+    },
+    {
+      "name": "School B",
+      "capacity": 1,
+      "student_preferences": [1,3,0,2]
+    },
+    {
+      "name": "School C",
+      "capacity": 1,
+      "student_preferences": [3,0,1,2]
+    },
+    {
+      "name": "School D",
+      "capacity": 1,
+      "student_preferences": [2,1,0,3]
+    }
+  ]
+}
