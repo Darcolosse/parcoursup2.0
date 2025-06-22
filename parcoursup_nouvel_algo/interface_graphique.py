@@ -2,7 +2,7 @@ import random
 import tkinter as tk
 from tkinter import StringVar
 from tkinter import IntVar
-from parcoursup_nouvel_algo.entity import Entity
+from entity import Entity
 from importer import Importer
 from stable_marriage2 import StableMarriage
 import copy
@@ -254,9 +254,9 @@ class Window:
         self.set_panel("panel_tab")
         self.clean_table()
 
-        marriage = StableMarriage(copy.deepcopy(self.student_list), copy.deepcopy(self.school_list))
-        school_list, student_refused, c = marriage.selection_student()
-        self.afficher_resultat(school_list, student_refused)
+        marriage = StableMarriage(self.student_list, self.school_list)
+        res = marriage.selection_student()
+        self.afficher_resultat(res[2], res[1], res[-1])
 
 
     # -------------------------
@@ -269,9 +269,9 @@ class Window:
         self.set_panel("panel_tab")
         self.clean_table()
         
-        marriage = StableMarriage(copy.deepcopy(self.student_list), copy.deepcopy(self.school_list))
-        school_list, student_refused, c = marriage.selection_school()
-        self.afficher_resultat(school_list, student_refused)
+        marriage = StableMarriage(self.student_list, self.school_list)
+        res = marriage.selection_school()
+        self.afficher_resultat(res[0], res[1], res[-1])
 
     #==================================================== | Calculs | =========================================================
 
@@ -279,31 +279,41 @@ class Window:
     # Sauvegarde des préférences + changement de page
     # -------------------------
 
-    def afficher_resultat(self, school_liste, student_list):
+    def afficher_resultat(self, school_liste, student_list, unused):
+        # Efface le contenu précédent du tableau
+        for widget in self.table_frame.winfo_children():
+            widget.destroy()
 
+        # Couleurs
+        COLOR_HEADER = "lightblue"
+        COLOR_ASSIGNED = "white"
+        COLOR_UNASSIGNED = "#ffcccc"  # Rouge clair
+        FONT_HEADER = ('Helvetica', 10, 'bold')
+
+        # Construire les données des écoles (acceptées)
         result = {}
         for school in school_liste:
-            # Récupère les étudiants, filtre les None, trie par id, puis transforme avec str_compact
-            students = [student for student in school.preferences.values() if student is not None]
-            sorted_students = sorted(students, key=lambda s: s.id)
-            result[f"{school.name}  ({len(sorted_students)}/{school.capacity})" ] = [student.str_compact() for student in sorted_students]
+            accepted_students = [student for student in school.preferences.values() if student is not None]
+            sorted_students = sorted(accepted_students, key=lambda s: s.id)
+            title = f"{school.name}  ({len(sorted_students)}/{school.capacity})"
+            result[title] = [student.str_compact() for student in sorted_students]
 
-        # Pour les étudiants sans école, idem
-        sorted_students = sorted(student_list, key=lambda s: s.id)
-        result["Sans école"] = [student.str_compact() for student in sorted_students]
+        # Étudiants non affectés
+        result["Étudiants non affectés"] = [student.str_compact() for student in sorted(student_list, key=lambda s: s.id)]
 
+        # Affichage : une colonne par école + 1 pour les non affectés
+        for col, title in enumerate(result.keys()):
+            # En-tête
+            tk.Label(self.table_frame, text=title, borderwidth=1, relief="solid", width=25,
+                    bg=COLOR_HEADER, font=FONT_HEADER).grid(row=0, column=col, sticky="nsew")
 
+            # Lignes (étudiants)
+            students = result[title]
+            bg_color = COLOR_UNASSIGNED if title == "Étudiants non affectés" else COLOR_ASSIGNED
+            for row, student in enumerate(students):
+                tk.Label(self.table_frame, text=student, borderwidth=1, relief="solid", width=25,
+                        bg=bg_color).grid(row=row + 1, column=col, sticky="nsew")
 
-        schools = list(result.keys())
-    
-        # En-têtes : noms des écoles
-        for col, school in enumerate(schools):
-            tk.Label(self.table_frame, text=school, borderwidth=1, relief="solid", width=20, bg="lightblue").grid(row=0, column=col)
-
-        # Remplir les cellules avec les noms d'élèves
-        for col, school in enumerate(schools):
-            for row, student in enumerate(result[school]):
-                tk.Label(self.table_frame, text=student, borderwidth=1, relief="solid", width=20, bg="lightblue").grid(row=row + 1, column=col)
 
 
     # -------------------------
@@ -361,7 +371,6 @@ class Window:
             titre.grid(row=row_idx + 1, column=0)
 
             pref_list = get_preferences(row_obj)
-            print(pref_list)
 
             for col_idx, col_obj in enumerate(cols):
                 entry = tk.Entry(self.table_frame, width=5, justify="center")

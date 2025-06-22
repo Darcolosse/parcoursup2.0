@@ -33,6 +33,9 @@ class Entity:
         self.wish: List[Entity] = []
 
         self._index: int = 0
+    
+    def set_preference(self, preferences: list[int]) -> None:
+        self.preferences: dict[int, Entity] = {key: None for key in preferences}
 
 
     def initialise_wishes(self, dict_object_wish : dict[int, "Entity"]) -> None:

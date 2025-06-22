@@ -1,7 +1,6 @@
 import copy
 from typing import List, Tuple
 from entity import Entity
-from viewcmd import ViewCmd
 
 class StableMarriage:
     school_list: List[Entity] = []
