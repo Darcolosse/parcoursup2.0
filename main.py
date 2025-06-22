@@ -34,5 +34,3 @@ if __name__ == "__main__":
         tkinterView()
     else:
         terminalView()
-
-
