@@ -116,7 +116,7 @@ class StableMarriage:
     @staticmethod
     def refuse(student, school, school_free) -> None:
         # Retire l'étudiant de l'école
-        school.preferences[student.id] = None
+        school.preference[student.id] = None
         # Remet l'école dans la liste des écoles libres si besoin
         if school not in school_free:
             school_free.append(school) # Attention : elle y est peut-être déjà

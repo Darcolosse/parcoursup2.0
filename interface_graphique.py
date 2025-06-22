@@ -253,7 +253,7 @@ class Window:
         self.set_panel("panel_tab")
         self.clean_table()
 
-        marriage = StableMarriage(copy.deepcopy(self.student_list), copy.deepcopy(self.school_list))
+        marriage = StableMarriage(self.student_list, self.school_list)
         school_list, student_refused, c = marriage.selection_student()
         self.afficher_resultat(school_list, student_refused)
 
@@ -266,7 +266,7 @@ class Window:
         self.btn_next.configure(command=lambda: "")
         self.titre.configure(text="Resultat choix par les écoles:")
         
-        marriage = StableMarriage(copy.deepcopy(self.student_list), copy.deepcopy(self.school_list))
+        marriage = StableMarriage(self.student_list, self.school_list)
         school_list, student_refused, c = marriage.selection_school()
         self.afficher_resultat(school_list, student_refused)
 
@@ -281,7 +281,7 @@ class Window:
         result = {}
         for school in school_liste:
             # Récupère les étudiants, filtre les None, trie par id, puis transforme avec str_compact
-            students = [student for student in school.preferences.values() if student is not None]
+            students = [student for student in school.preference.values() if student is not None]
             sorted_students = sorted(students, key=lambda s: s.id)
             result[f"{school.name}  ({len(sorted_students)}/{school.capacity})" ] = [student.str_compact() for student in sorted_students]
 
@@ -489,22 +489,3 @@ class Window:
     def run(self):
         self.root.mainloop()
     
-    def create_random_test_data(self):
-        schools = [School(f"École {i+1}", 10, []) for i in range(3)]
-        for school in schools:
-            school.preferences
-        students = [Student(f"Prenom{i}", f"Nom{i}", []) for i in range(8)]
-        random.shuffle(students)
-        return {
-            schools[0]: students[:3],
-            schools[1]: students[3:4],
-            schools[2]: students[4:]
-        }
-    
-
-
-# Création et exécution de l'application
-if __name__ == "__main__":
-    app = Window()
-    app.page_import_student()
-    app.run()
