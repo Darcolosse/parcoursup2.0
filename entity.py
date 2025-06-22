@@ -16,7 +16,7 @@ class Entity:
             preferences (list[int]): A list of preferred entities' IDs.
             is_student (bool): Whether the entity is a student (True) or a school (False).
         """
-        
+
         # Initialize the ID based on whether the entity is a student or a school
         if is_student:
             self.id: int = Entity._id_student
@@ -24,7 +24,7 @@ class Entity:
         else:
             self.id: int = Entity._id_school
             Entity._id_school += 1
-        
+
         # Set the name, capacity, preferences and initialize wish
         self.name: str = name
         self.capacity: int = capacity
@@ -33,9 +33,6 @@ class Entity:
         self.wish: List[Entity] = []
 
         self._index: int = 0
-    
-    def set_preference(self, preferences: list[int]) -> None:
-        self.preferences: dict[int, Entity] = {key: None for key in preferences}
 
 
     def initialise_wishes(self, dict_object_wish : dict[int, "Entity"]) -> None:
@@ -52,14 +49,14 @@ class Entity:
         for key in self.preferences.keys():
             if key in list(dict_object_wish.keys()):
                 self.wish.append(dict_object_wish[key])
-                
-                
-    
+
+
+
     @staticmethod
     def initialise_preference(list_object_to_initialise : List["Entity"], list_object_wish : List["Entity"]) -> None:
         # Create a dictionary of wishes
         dict_object_wish = {wish.id: wish for wish in list_object_wish}
-        
+
         for object in list_object_to_initialise:
             object.wish = []
             for key in object.preferences.keys():
@@ -81,7 +78,7 @@ class Entity:
             list[int]: A list of the IDs of the preferred entities.
         """
         return list(self.preferences.keys())
-    
+
     def is_full(self) -> bool:
         """
         Check if the entity has reached its capacity based on the number of non-None preferences.
@@ -91,7 +88,7 @@ class Entity:
             bool: True if the entity is full, False otherwise.
         """
         return (len(self.preferences) - list(self.preferences.values()).count(None)) >= self.capacity
-    
+
     def str_compact(self) -> str:
         """
         Returns a compact string representation of the entity.
@@ -110,7 +107,7 @@ class Entity:
             str: A string in the format "id: {id}, name: {name}, capacity: {capacity}".
         """
         return f"id: {self.id}, name: {self.name}, capacity : {self.capacity}"
-    
+
     def __repr__(self):
         """
         Returns a detailed string representation of the entity, including its ID, name, capacity,

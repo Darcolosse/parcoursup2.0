@@ -2,10 +2,9 @@ import random
 import tkinter as tk
 from tkinter import StringVar
 from tkinter import IntVar
-from student import Student
-from school import School
+from entity import Entity
 from importer import Importer
-from stable_marriage import StableMarriage
+from stable_marriage2 import StableMarriage
 import copy
 
 class Window:
@@ -18,6 +17,8 @@ class Window:
         # Liste des infos du model
         self.student_list = []
         self.school_list = []
+        self.school_panel_list = []
+        self.student_panel_list = []
 
         # Fenêtre principale
         self.root = tk.Tk()
@@ -172,7 +173,7 @@ class Window:
         # Section droite
         tk.Label(self.right_section, text="Liste des écoles", bg="lightblue").pack(pady=10)
         for school in self.school_list:
-            self.add_item(school)
+            self.add_school_item(school)
 
         # Section gauche - haut
         tk.Label(self.left_top, text="Importer les écoles à partir d'un fichier", bg="lightgreen").pack(pady=10)
@@ -203,7 +204,7 @@ class Window:
         # Section droite
         tk.Label(self.right_section, text="Liste des etudiants", bg="lightblue").pack(pady=10)
         for student in self.student_list:
-            self.add_item(student)
+            self.add_student_item(student)
 
         # Section gauche - haut
         tk.Label(self.left_top, text="Importer les étudiants à partir d'un fichier", bg="lightgreen").pack(pady=10)
@@ -254,8 +255,8 @@ class Window:
         self.clean_table()
 
         marriage = StableMarriage(self.student_list, self.school_list)
-        school_list, student_refused, c = marriage.selection_student()
-        self.afficher_resultat(school_list, student_refused)
+        res = marriage.selection_student()
+        self.afficher_resultat(res[2], res[1], res[-1])
 
 
     # -------------------------
@@ -265,10 +266,12 @@ class Window:
         self.btn_previous.configure(command=lambda: self.page_result_student())
         self.btn_next.configure(command=lambda: "")
         self.titre.configure(text="Resultat choix par les écoles:")
+        self.set_panel("panel_tab")
+        self.clean_table()
         
         marriage = StableMarriage(self.student_list, self.school_list)
-        school_list, student_refused, c = marriage.selection_school()
-        self.afficher_resultat(school_list, student_refused)
+        res = marriage.selection_school()
+        self.afficher_resultat(res[0], res[1], res[-1])
 
     #==================================================== | Calculs | =========================================================
 
@@ -276,31 +279,41 @@ class Window:
     # Sauvegarde des préférences + changement de page
     # -------------------------
 
-    def afficher_resultat(self, school_liste, student_list):
+    def afficher_resultat(self, school_liste, student_list, unused):
+        # Efface le contenu précédent du tableau
+        for widget in self.table_frame.winfo_children():
+            widget.destroy()
 
+        # Couleurs
+        COLOR_HEADER = "lightblue"
+        COLOR_ASSIGNED = "white"
+        COLOR_UNASSIGNED = "#ffcccc"  # Rouge clair
+        FONT_HEADER = ('Helvetica', 10, 'bold')
+
+        # Construire les données des écoles (acceptées)
         result = {}
         for school in school_liste:
-            # Récupère les étudiants, filtre les None, trie par id, puis transforme avec str_compact
-            students = [student for student in school.preference.values() if student is not None]
-            sorted_students = sorted(students, key=lambda s: s.id)
-            result[f"{school.name}  ({len(sorted_students)}/{school.capacity})" ] = [student.str_compact() for student in sorted_students]
+            accepted_students = [student for student in school.preferences.values() if student is not None]
+            sorted_students = sorted(accepted_students, key=lambda s: s.id)
+            title = f"{school.name}  ({len(sorted_students)}/{school.capacity})"
+            result[title] = [student.str_compact() for student in sorted_students]
 
-        # Pour les étudiants sans école, idem
-        sorted_students = sorted(student_list, key=lambda s: s.id)
-        result[f"Sans école {len(sorted_students)}"] = [student.str_compact() for student in sorted_students]
+        # Étudiants non affectés
+        result["Étudiants non affectés"] = [student.str_compact() for student in sorted(student_list, key=lambda s: s.id)]
 
+        # Affichage : une colonne par école + 1 pour les non affectés
+        for col, title in enumerate(result.keys()):
+            # En-tête
+            tk.Label(self.table_frame, text=title, borderwidth=1, relief="solid", width=25,
+                    bg=COLOR_HEADER, font=FONT_HEADER).grid(row=0, column=col, sticky="nsew")
 
+            # Lignes (étudiants)
+            students = result[title]
+            bg_color = COLOR_UNASSIGNED if title == "Étudiants non affectés" else COLOR_ASSIGNED
+            for row, student in enumerate(students):
+                tk.Label(self.table_frame, text=student, borderwidth=1, relief="solid", width=25,
+                        bg=bg_color).grid(row=row + 1, column=col, sticky="nsew")
 
-        schools = list(result.keys())
-    
-        # En-têtes : noms des écoles
-        for col, school in enumerate(schools):
-            tk.Label(self.table_frame, text=school, borderwidth=1, relief="solid", width=20, bg="lightblue").grid(row=0, column=col)
-
-        # Remplir les cellules avec les noms d'élèves
-        for col, school in enumerate(schools):
-            for row, student in enumerate(result[school]):
-                tk.Label(self.table_frame, text=student, borderwidth=1, relief="solid", width=20, bg="lightblue").grid(row=row + 1, column=col)
 
 
     # -------------------------
@@ -323,11 +336,11 @@ class Window:
         if mode == "student":
             rows = self.student_list
             cols = self.school_list
-            get_preferences = lambda obj: getattr(obj, "school_preferences", [])
+            get_preferences = lambda obj: obj.get_preference()
         elif mode == "school":
             rows = self.school_list
             cols = self.student_list
-            get_preferences = lambda obj: getattr(obj, "student_preferences", [])
+            get_preferences = lambda obj: obj.get_preference()
         else:
             raise ValueError("Mode inconnu")
 
@@ -365,7 +378,7 @@ class Window:
                 self.preferences_entries[(row_idx, col_idx)] = entry
 
                 # Pré-remplissage si col_obj présent dans les préférences
-                if hasattr(row_obj, "school_preferences") or hasattr(row_obj, "student_preferences"):
+                if pref_list:
                     if col_obj.id in pref_list:
                         rank = pref_list.index(col_obj.id)
                         entry.insert(0, str(rank))
@@ -413,11 +426,9 @@ class Window:
         if mode == "student":
             targets = self.student_list
             sources = self.school_list
-            attr = "school_preferences"
         elif mode == "school":
             targets = self.school_list
             sources = self.student_list
-            attr = "student_preferences"
         else:
             raise ValueError("Mode inconnu")
 
@@ -432,13 +443,56 @@ class Window:
                         if rank not in raw:
                             raw[rank] = source.id
             preferences = [raw[k] for k in sorted(raw)]
-            setattr(target, attr, preferences)
+            target.set_preference(preferences)
+            #setattr(target, attr, preferences)
 
     # -------------------------
     # Ajout de label
     # -------------------------
-    def add_item(self, item_object):
-        tk.Label(self.right_section, text=item_object).pack()
+
+    def add_student_item(self, student_object):
+        student_panel = tk.Frame(self.right_section, bg="lightblue")
+        student_panel.pack(fill="x", pady=2)
+
+        # Label à gauche
+        tk.Label(student_panel, text=str(student_object)).grid(row=0, column=0, sticky="w", padx=5)
+        
+        # Bouton à droite
+        tk.Button(
+            student_panel,
+            text="Suppr " + str(student_object.id),
+            command=lambda: self.remove_student_item(student_object, student_panel)
+        ).grid(row=0, column=1, sticky="e", padx=5)
+
+    def add_school_item(self, school_object):
+        school_panel = tk.Frame(self.right_section, bg="lightblue")
+        school_panel.pack(fill="x", pady=2)
+
+        # Label à gauche
+        tk.Label(school_panel, text=str(school_object)).grid(row=0, column=0, sticky="w", padx=5)
+        
+        # Bouton à droite
+        tk.Button(
+            school_panel,
+            text="Suppr " + str(school_object.id),
+            command=lambda: self.remove_school_item(school_object, school_panel)
+        ).grid(row=0, column=1, sticky="e", padx=5)
+
+    def remove_student_item(self, student_object, student_panel):
+        student_panel.destroy()
+        # for school in self.school_list:
+        #     if student_object.id in school.student_preferences:
+        #         school.student_preferences.remove(student_object.id)
+        #         school.set_preference(school.student_preferences)
+        self.student_list.remove(student_object)
+
+    def remove_school_item(self, school_object, school_panel):
+        school_panel.destroy()
+        # for student in self.student_list:
+        #     if school_object.id in student.school_preferences:
+        #         student.school_preferences.remove(school_object.id)
+        #         student.set_preference(student.school_preferences)
+        self.school_list.remove(school_object)
     
     # -------------------------
     # Ajout d'objet school à la liste
@@ -452,14 +506,13 @@ class Window:
             school_capacity = 0
 
         # creation de l'objet
-        new_school = School(
+        new_school = Entity(
             school_name,
             school_capacity,
-            [],
-            {}
+            []
         )
         self.school_list.append(new_school)
-        self.add_item(new_school)
+        self.add_school_item(new_school)
     
     # -------------------------
     # Ajout d'objet student à la liste
@@ -470,9 +523,9 @@ class Window:
         student_last_name = self.input_student_last_name.get()
 
         # creation de l'objet
-        new_student = Student(student_first_name, student_last_name, [])
+        new_student = Entity(student_first_name + " " + student_last_name,1, [])
         self.student_list.append(new_student)
-        self.add_item(new_student)
+        self.add_student_item(new_student)
         
     # -------------------------
     # Ajout de champs de texte avec légende
@@ -489,3 +542,22 @@ class Window:
     def run(self):
         self.root.mainloop()
     
+    def create_random_test_data(self):
+        schools = [School(f"École {i+1}", 10, []) for i in range(3)]
+        for school in schools:
+            school.preferences
+        students = [Student(f"Prenom{i}", f"Nom{i}", []) for i in range(8)]
+        random.shuffle(students)
+        return {
+            schools[0]: students[:3],
+            schools[1]: students[3:4],
+            schools[2]: students[4:]
+        }
+    
+
+
+# Création et exécution de l'application
+if __name__ == "__main__":
+    app = Window()
+    app.page_import_student()
+    app.run()

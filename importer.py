@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import json
-from student import Student
-from school import School
+from entity import Entity
 
 class Importer:
     def __init__(self, parent_window=None):
@@ -11,7 +10,23 @@ class Importer:
     @staticmethod
     def importer(file_path: str):
         data = json.load(file_path)
-        return [School(school['name'], school['capacity'], school["student_preferences"], {key: None for key in school["student_preferences"]}) for school in data['schools']],               [Student(student['first_name'], student['last_name'], student["school_preferences"]) for student in data['students']]
+        school_list = [
+                Entity(
+                    school['name'],
+                    school['capacity'],
+                    school["student_preferences"],
+                    is_student=False
+                ) for school in data['schools']
+            ]
+        student_list = [
+                Entity(
+                    student['name'],
+                    student['capacity'],
+                    student["school_preferences"],
+                    is_student=True
+                ) for student in data['students']
+            ]
+        return school_list, student_list
 
     def charger_fichier(self):
         filepath = filedialog.askopenfilename(
