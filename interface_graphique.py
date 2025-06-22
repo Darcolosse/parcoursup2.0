@@ -4,8 +4,8 @@ Description: This project is an implementation of the stable marriage algorithm,
 designed to simulate an admission system similar to Parcoursup.
 
 Authors:
-- Author GOUES Corentin
-- Author WAMSTER Alexis
+- Author @Darcolosse
+- Author @Alexis-Wamster
 """
 
 import random
