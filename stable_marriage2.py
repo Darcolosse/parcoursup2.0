@@ -1,3 +1,13 @@
+"""
+Project Name: Parcoursup 2.0
+Description: This project is an implementation of the stable marriage algorithm,
+designed to simulate an admission system similar to Parcoursup.
+
+Authors:
+- Author @Darcolosse
+- Author @Alexis-Wamster
+"""
+
 import copy
 from typing import List, Tuple
 from entity import Entity
